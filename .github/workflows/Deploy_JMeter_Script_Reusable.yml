@@ -2,26 +2,6 @@ name: Deploy JMeter Scripts
 
 on:
   workflow_call:
-    inputs:
-      jmeter-test-node:
-        description: "Target JMeter machine (e.g., 10.0.0.10)"
-        required: true
-        type: string
-      jmeter-test-path:
-        description: "Path to the JMeter test files"
-        required: true
-        type: string
-      powershell-path:
-        description: "Path to PowerShell scripts"
-        required: true
-        type: string
-      login-user:
-        description: "Remote login username"
-        required: true
-        type: string
-    secrets:
-      login-password:
-        required: true
 
 jobs:
   deploy-jmeter:
