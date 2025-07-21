@@ -1,0 +1,31 @@
+name: Run JMeter IntegrationStudio Test
+
+on:
+  workflow_call:
+
+jobs:
+  run-jmeter-test:
+    runs-on: [self-hosted, windows]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run IntegrationStudio_ECKSSO_LOAD
+        shell: pwsh
+        run: |
+          $jmeterFile = 'HR\Main\BJE\IntegrationStudio_ECKSSO_LOAD.jmx'
+          $envname = '${{ inputs.env-name }}'
+          $gitRootFolder = '${{ github.workspace }}'
+          $isAutomation = 'true'
+          $isScheduled = '${{ inputs.is-scheduled }}'
+          $pwsh = 'pwsh'
+
+          $jmeterproperties = " ' -JINP_CompanyName=Eckssohr21 ' "
+
+          $command = "& '$pwsh' -command { param (`$myarg1, `$myarg2, `$myarg3, `$myarg4, `$myarg5, `$myarg6)
+            . `$myarg3\PowerShell\Jmeter\JmeterRunTestInfluxdb.ps1 -JmeterFile `$myarg1 -Envname `$myarg2 -GitRootFolder `$myarg3 -IsAutomation `$myarg4 -AdditionalInputVariables `$myarg5 -IsScheduled `$myarg6 -save `$true -run `$true
+          } -args ('$jmeterFile','$envname','$gitRootFolder','$isAutomation',$jmeterproperties, $isScheduled)"
+
+          Write-Host $command
+          Invoke-Expression $command

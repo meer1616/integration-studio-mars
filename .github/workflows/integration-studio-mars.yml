@@ -19,6 +19,22 @@ on:
         description: "Remote login username $LoginUserCustadds"
         required: true
         type: string
+      env-name:
+        description: "Environment name (e.g., dev, test, prod) $Envname"
+        required: true
+        type: string
+      is-automation:
+        description: "Is this an automation run? (true/false) $IsAutomation"
+        required: true
+        type: boolean
+      is-scheduled:
+        description: "Is this a scheduled run? (true/false) $IsScheduled"
+        required: true
+        type: boolean
+      pwsh:
+        description: "Path to PowerShell executable $pwsh"
+        required: true
+        type: string
     secrets:
       login-password:
         required: true
@@ -33,3 +49,11 @@ jobs:
       login-user: ${{ github.event.inputs.login-user }}
     secrets:
       login-password: ${{ secrets.LOGIN_PASSWORD }}
+
+  run-integrationstudio-test:
+    uses: meer1616/integration-studio-mars/.github/workflows/IntegrationStudio_ECKSSO_LOAD.yml@main
+    with:
+      env-name: ${{ github.event.inputs.env-name }}
+      is-automation: ${{ github.event.inputs.is-automation }}
+      is-scheduled: ${{ github.event.inputs.is-scheduled }}
+      pwsh: ${{ github.event.inputs.pwsh }}
