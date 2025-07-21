@@ -1,0 +1,15 @@
+name: Integration Studio Mars
+
+on:
+  workflow_dispatch: # Manual trigger for now
+
+jobs:
+  deploy-scripts:
+    uses: meer1616/Testing-Jmeter/.github/workflows/Deploy_JMeter_Script_Reusable.yml@main
+    with:
+      jmeter-test-node: "my-test-machine"
+      jmeter-test-path: 'C:\\JMeter\\Tests'
+      powershell-path: 'C:\\Scripts'
+      login-user: "adminuser"
+    secrets:
+      login-password: ${{ secrets.LOGIN_PASSWORD }}
