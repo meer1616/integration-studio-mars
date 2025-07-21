@@ -1,0 +1,46 @@
+name: Trigger Metrics Collector
+
+on:
+  workflow_call:
+    inputs:
+      env-name:
+        required: true
+        type: string
+      test-name:
+        required: true
+        type: string
+    secrets:
+      github-token:
+        required: true
+
+jobs:
+  trigger-metrics-collector:
+    runs-on: [self-hosted, windows]
+
+    steps:
+      - name: Trigger metrics-collector workflow
+        shell: pwsh
+        run: |
+          $token = "${{ secrets.github-token }}"
+          $repo = "DayforceGlobal/perfeng-tools"
+          $workflow = "metrics-collector.yml"
+          $branch = "main"
+          $testName = "IntegrationStudio_ECKSSO_LOAD"
+          $env = "${{ inputs.env-name }}"
+
+          $json = @"
+          {
+            "ref": "$branch",
+            "inputs": {
+              "load_test_name": "$testName",
+              "env_name": "$env"
+            }
+          }
+          "@
+
+          curl -X POST `
+            -H "Authorization: Bearer $token" `
+            -H "Accept: application/vnd.github+json" `
+            -H "Content-Type: application/json" `
+            -d $json `
+            "https://api.github.com/repos/$repo/actions/workflows/$workflow/dispatches"

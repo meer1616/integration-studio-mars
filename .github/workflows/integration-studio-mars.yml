@@ -58,3 +58,10 @@ jobs:
       is-automation: ${{ github.event.inputs.is-automation }}
       is-scheduled: ${{ github.event.inputs.is-scheduled }}
       pwsh: ${{ github.event.inputs.pwsh }}
+
+  trigger-metrics:
+    uses: meer1616/integration-studio-mars/.github/workflows/Save_Infra_Metrics.yml@main
+    with:
+      env-name: ${{ github.event.inputs.env-name }}
+    secrets:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
