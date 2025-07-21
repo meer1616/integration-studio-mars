@@ -4,7 +4,7 @@ on:
   workflow_dispatch: # Manual trigger for now
     inputs:
       jmeter-test-node:
-        description: "Target JMeter machine (e.g., 10.0.0.10) $JmeterTestingSingleNode"
+        description: "Target JMeter machine $JmeterTestingSingleNode"
         required: true
         type: string
       jmeter-test-path:
@@ -20,7 +20,7 @@ on:
         required: true
         type: string
       env-name:
-        description: "Environment name (e.g., dev, test, prod) $Envname"
+        description: "Environment name $Envname"
         required: true
         type: string
       is-automation:
@@ -52,6 +52,7 @@ jobs:
 
   run-integrationstudio-test:
     uses: meer1616/integration-studio-mars/.github/workflows/IntegrationStudio_ECKSSO_LOAD.yml@main
+    needs: deploy-scripts
     with:
       env-name: ${{ github.event.inputs.env-name }}
       is-automation: ${{ github.event.inputs.is-automation }}
