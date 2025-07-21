@@ -61,6 +61,9 @@ jobs:
 
   trigger-metrics:
     uses: meer1616/integration-studio-mars/.github/workflows/Save_Infra_Metrics.yml@main
+    needs:
+      - deploy-scripts
+      - run-integrationstudio-test
     with:
       env-name: ${{ github.event.inputs.env-name }}
     secrets:
