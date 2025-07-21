@@ -4,19 +4,19 @@ on:
   workflow_dispatch: # Manual trigger for now
     inputs:
       jmeter-test-node:
-        description: "Target JMeter machine (e.g., 10.0.0.10)"
+        description: "Target JMeter machine (e.g., 10.0.0.10) $JmeterTestingSingleNode"
         required: true
         type: string
       jmeter-test-path:
-        description: "Path to the JMeter test files"
+        description: "Path to the JMeter test files $JmeterTestPath"
         required: true
         type: string
       powershell-path:
-        description: "Path to PowerShell scripts"
+        description: "Path to PowerShell scripts $PowershellPath"
         required: true
         type: string
       login-user:
-        description: "Remote login username"
+        description: "Remote login username $LoginUserCustadds"
         required: true
         type: string
     secrets:
