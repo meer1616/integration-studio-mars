@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy-scripts:
-    uses: meer1616/Testing-Jmeter/.github/workflows/Deploy_JMeter_Script_Reusable.yml@main
+    uses: meer1616/integration-studio-mars/.github/workflows/Deploy_JMeter_Script_Reusable.yml@main
     with:
       jmeter-test-node: "my-test-machine"
       jmeter-test-path: 'C:\\JMeter\\Tests'
