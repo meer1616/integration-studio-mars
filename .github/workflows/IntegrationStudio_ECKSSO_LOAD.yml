@@ -2,6 +2,19 @@ name: Run JMeter IntegrationStudio Test
 
 on:
   workflow_call:
+    inputs:
+      env-name:
+        required: true
+        type: string
+      is-automation:
+        required: true
+        type: boolean
+      is-scheduled:
+        required: true
+        type: boolean
+      pwsh:
+        required: true
+        type: string
 
 jobs:
   run-jmeter-test:

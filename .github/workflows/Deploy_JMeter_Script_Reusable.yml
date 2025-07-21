@@ -2,6 +2,22 @@ name: Deploy JMeter Scripts
 
 on:
   workflow_call:
+    inputs:
+      jmeter-test-node:
+        required: true
+        type: string
+      jmeter-test-path:
+        required: true
+        type: string
+      powershell-path:
+        required: true
+        type: string
+      login-user:
+        required: true
+        type: string
+    secrets:
+      login-password:
+        required: true
 
 jobs:
   deploy-jmeter:
