@@ -19,6 +19,9 @@ on:
         description: "Remote login username"
         required: true
         type: string
+    secrets:
+      login-password:
+        required: true
 
 jobs:
   deploy-jmeter:
