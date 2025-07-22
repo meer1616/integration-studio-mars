@@ -21,7 +21,7 @@ on:
 
 jobs:
   deploy-jmeter:
-    runs-on: [self-hosted, windows]
+    runs-on: [self-hosted, performance-engineering]
 
     steps:
       - name: Checkout repository

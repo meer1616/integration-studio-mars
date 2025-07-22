@@ -12,7 +12,7 @@ on:
 
 jobs:
   trigger-metrics-collector:
-    runs-on: [self-hosted, windows]
+    runs-on: [self-hosted, performance-engineering]
 
     steps:
       - name: Trigger metrics-collector workflow
