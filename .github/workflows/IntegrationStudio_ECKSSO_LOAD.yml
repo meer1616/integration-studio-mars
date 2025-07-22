@@ -18,7 +18,7 @@ on:
 
 jobs:
   run-jmeter-test:
-    runs-on: [self-hosted, performance-engineering]
+    runs-on: [self-hosted, windows]
 
     steps:
       - name: Checkout repository

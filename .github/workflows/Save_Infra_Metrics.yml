@@ -6,19 +6,16 @@ on:
       env-name:
         required: true
         type: string
-    secrets:
-      github-token:
-        required: true
 
 jobs:
   trigger-metrics-collector:
-    runs-on: [self-hosted, performance-engineering]
+    runs-on: [self-hosted, windows]
 
     steps:
       - name: Trigger metrics-collector workflow
         shell: pwsh
         run: |
-          $token = "${{ secrets.github-token }}"
+          $token = "${{ secrets.GITHUB_TOKEN }}"
           $repo = "DayforceGlobal/perfeng-tools"
           $workflow = "metrics-collector.yml"
           $branch = "main"

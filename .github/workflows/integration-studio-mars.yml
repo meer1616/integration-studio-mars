@@ -35,11 +35,6 @@ on:
         description: "Path to PowerShell executable $pwsh"
         required: true
         type: string
-    secrets:
-      login-password:
-        required: true
-      github-token:
-        required: true
 
 jobs:
   deploy-scripts:
@@ -49,8 +44,6 @@ jobs:
       jmeter-test-path: ${{ github.event.inputs.jmeter-test-path }}
       powershell-path: ${{ github.event.inputs.powershell-path }}
       login-user: ${{ github.event.inputs.login-user }}
-    secrets:
-      login-password: ${{ secrets.LOGIN_PASSWORD }}
 
   run-integrationstudio-test:
     uses: meer1616/integration-studio-mars/.github/workflows/IntegrationStudio_ECKSSO_LOAD.yml@main
@@ -68,5 +61,3 @@ jobs:
       - run-integrationstudio-test
     with:
       env-name: ${{ github.event.inputs.env-name }}
-    secrets:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
