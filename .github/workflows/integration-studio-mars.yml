@@ -44,6 +44,8 @@ jobs:
       jmeter-test-path: ${{ github.event.inputs.jmeter-test-path }}
       powershell-path: ${{ github.event.inputs.powershell-path }}
       login-user: ${{ github.event.inputs.login-user }}
+    secrets:
+      login-password: ${{ secrets.LOGIN_PASSWORD }}
 
   run-integrationstudio-test:
     uses: meer1616/integration-studio-mars/.github/workflows/IntegrationStudio_ECKSSO_LOAD.yml@main

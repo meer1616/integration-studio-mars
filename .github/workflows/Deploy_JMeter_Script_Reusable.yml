@@ -15,6 +15,10 @@ on:
       login-user:
         required: true
         type: string
+    secrets:
+      login-password:
+        required: true
+        type: string
 
 jobs:
   deploy-jmeter:
@@ -28,7 +32,8 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "Deploying JMeter scripts to ${{ inputs.jmeter-test-node }}"
-          $bytes = [System.Text.Encoding]::UTF8.GetBytes("${{ secrets.MY_SECRET }}")
+          Write-Host "Secret is here ${{ secrets.login-password }}"
+          $bytes = [System.Text.Encoding]::UTF8.GetBytes("${{ secrets.login-password }}")
           $sha256 = [System.Security.Cryptography.SHA256]::Create()
           $hash = $sha256.ComputeHash($bytes)
           $hex = [BitConverter]::ToString($hash) -replace '-', ''
