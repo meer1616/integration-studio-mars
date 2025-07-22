@@ -38,6 +38,8 @@ on:
     secrets:
       login-password:
         required: true
+      github-token:
+        required: true
 
 jobs:
   deploy-scripts:
